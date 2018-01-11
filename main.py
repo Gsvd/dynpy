@@ -1,5 +1,5 @@
 import requests
-
+import socket
 
 def get_public_ip():
     tmp = requests.get(r'http://ipv4.jsonip.com')
@@ -12,6 +12,12 @@ def update_ip(username, password, dns, ip):
         return True
     else:
         return False
+    
+def need_update(dns, ip):                                                                                                                                               
+    if socket.gethostbyname(dns) == ip:                                                                                                                                 
+        return False                                                                                                                                                    
+    else:                                                                                                                                                               
+        return True 
 
 if __name__ == "__main__":
     public_ip = get_public_ip()
@@ -21,7 +27,10 @@ if __name__ == "__main__":
                 {"dns": "dev.domain.com", "username": "YOUR_USERNAME", "password": "YOUR_PASSWORD"}
                 ]
     for entry in entries:
-        if update_ip(entry.get("username"), entry.get("password"), entry.get("dns"), public_ip):
-            print("Successfull: {dns} with {ip}".format(dns=entry.get("dns"), ip=public_ip))
-        else:
-            print("Error: {dns} with {ip}".format(dns=entry.get("dns"), ip=public_ip))
+        if need_update(entry.get("dns"), public_ip):                                                                                                                    
+            if update_ip(entry.get("username"), entry.get("password"), entry.get("dns"), public_ip):                                                                    
+                print("Successfull: {dns} with {ip}".format(dns=entry.get("dns"), ip=public_ip))                                                                        
+            else:                                                                                                                                                       
+                print("Error: {dns} with {ip}".format(dns=entry.get("dns"), ip=public_ip))                                                                              
+        else:                                                                                                                                                           
+            print("Successfull: {dns} already points to {ip}".format(dns=entry.get("dns"), ip=public_ip))
