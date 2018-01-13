@@ -9,10 +9,7 @@ def get_public_ip():
 def update_ip(username, password, dns, ip):
     url = "https://www.ovh.com/nic/update?system=dyndns&hostname={dns}&myip={ip}".format(dns=dns, ip=ip)
     tmp = get(url, auth=(username, password))
-    if tmp.status_code == 200:
-        return True
-    else:
-        return False
+    return True if tmp.status_code == 200 else False
 
 if __name__ == "__main__":
     public_ip = get_public_ip()
