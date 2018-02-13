@@ -1,4 +1,4 @@
-# dynhost_ovh_updater
+# ovh_dynpy
 Python script OVH dynhost updater
 
 ### dependencies
