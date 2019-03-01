@@ -1,0 +1,16 @@
+{
+  "entries": [
+    {
+      "provider": "https://domains.google.com/nic/update?hostname={dns}&myip={ip}",
+      "dns": "domainone.com",
+      "username": "YOUR_USERNAME",
+      "password": "YOUR_PASSWORD"
+    },
+    {
+      "provider": "https://www.ovh.com/nic/update?system=dyndns&hostname={dns}&myip={ip}",
+      "dns": "domaintwo.com",
+      "username": "YOUR_USERNAME",
+      "password": "YOUR_PASSWORD"
+    }
+  ]
+}
