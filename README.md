@@ -1,5 +1,5 @@
-# ovh_dynpy
-Python script OVH dynhost updater
+# dynpy
+Python script dynhost updater
 
 ### dependencies
 [requests](http://docs.python-requests.org/en/master/)
