@@ -19,6 +19,6 @@ if __name__ == "__main__":
         entries = loads(content)["entries"]
         for entry in entries:
             if update_ip(entry["username"], entry["password"], entry["dns"], public_ip, entry["provider"]):
-                print("Successfull: {dns} set to {ip}".format(dns=entry["dns"], ip=public_ip))
+                print("Successful: {dns} set to {ip}".format(dns=entry["dns"], ip=public_ip))
             else:
                 print("Error: {dns} set to {ip}".format(dns=entry["dns"], ip=public_ip))
