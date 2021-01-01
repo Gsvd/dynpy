@@ -1,6 +1,7 @@
 from requests import get
 from socket import gethostbyname
 from json import loads
+from datetime import datetime
 
 
 def get_public_ip():
@@ -19,6 +20,8 @@ def check_dns_ip(dns, dns_ip):
         return False
 
 if __name__ == "__main__":
+    now = datetime.now()
+    dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
     public_ip = get_public_ip()
     with open("config.json", "r") as content_file:
         content = content_file.read()
@@ -26,6 +29,6 @@ if __name__ == "__main__":
         for entry in entries:
             if not check_dns_ip(entry["dns"], public_ip):
                 if update_ip(entry["username"], entry["password"], entry["dns"], public_ip, entry["provider"]):
-                    print("Successful: {dns} set to {ip}".format(dns=entry["dns"], ip=public_ip))
+                    print("[{date}] Successful: {dns} set to {ip}".format(date=dt_string, dns=entry["dns"], ip=public_ip))
                 else:
-                    print("Error: {dns} set to {ip}".format(dns=entry["dns"], ip=public_ip))
+                    print("[{date}] Error: {dns} set to {ip}".format(date=dt_string, dns=entry["dns"], ip=public_ip))
