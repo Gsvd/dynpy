@@ -4,7 +4,7 @@ from json import loads
 
 
 def get_public_ip():
-    tmp = get(r'http://ipv4.jsonip.com')
+    tmp = get(r'http://jsonip.com')
     return tmp.json()['ip']
 
 def update_ip(username, password, dns, ip, provider):
